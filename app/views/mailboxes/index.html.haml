@@ -1,0 +1,41 @@
+.page-header
+  %h3 Mailboxes
+
+- if @mailboxes.count == 0
+  %p.alert.alert-warning
+    No mailbox found.
+- else
+  .container
+    = form_tag mailboxes_path, :method => 'get', :class => 'form-inline', id: 'search-form' do
+      .form-group
+        = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search username'
+        = submit_tag 'Search', :name => nil, class: 'btn btn-default'
+  %br
+  %table.table.table-striped.table-hover.table-wb
+    %tr
+      %th Name
+      %th Username
+      %th Domain
+      %th Lastlogin
+      %th Expires
+      %th Format
+      %th Active
+      %th
+    - @mailboxes.each do |mailbox|
+      %tr{ class: cycle('odd','even') }
+        %td= mailbox.name
+        %td= mailbox.username
+        %td= mailbox.domain.name
+        %td= mailbox.lastlogin
+        %td= mailbox.expires
+        %td= mailbox.format.name
+        %td= mailbox.active
+        %td
+          = link_to mailbox_path(mailbox), class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-search
+          = link_to edit_mailbox_path(mailbox), class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-pencil
+          = link_to newpassword_mailboxes_path(mailbox), method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-refresh
+          = link_to mailbox_path(mailbox), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-trash

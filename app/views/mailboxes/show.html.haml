@@ -1,0 +1,28 @@
+.page-header
+  %h3
+    = @mailbox.username + '@' + @mailbox.domain.name
+
+%table.table.table-wb
+  %tr
+    %th Name
+    %td= @mailbox.name
+  %tr
+    %th Lastlogin
+    %td= @mailbox.lastlogin
+  %tr
+    %th Expires
+    %td= @mailbox.expires
+  %tr
+    %th Format
+    %td= @mailbox.format.name
+  %tr
+    %th Active
+    %td= @mailbox.active
+  %tr
+    %th Created
+    %td= @mailbox.created_at
+  %tr
+    %th Updated
+    %td= @mailbox.updated_at
+
+= link_to 'Back to list', mailboxes_path, class: 'btn btn-default'

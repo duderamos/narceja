@@ -1,0 +1,6 @@
+.page-header
+  %h3.text-success New mailbox created
+
+= render 'credentials'
+
+= link_to 'Back to list', mailboxes_path

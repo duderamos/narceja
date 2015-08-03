@@ -1,0 +1,29 @@
+= form_for @mailbox, :html => { class: 'form', role: 'form' } do |f|
+  - if @mailbox.errors.any?
+    - @mailbox.errors.full_messages.each do |msg|
+      %p.alert.alert-warning
+        = msg
+
+  .form-group
+    = f.label :username, class: 'control-label'
+    = f.text_field :username, class: 'form-control'
+  .form-group
+    = f.label 'Domain', class: 'control-label'
+    = f.collection_select :domain_id, Domain.all, :id, :name, {}, { class: 'form-control' }
+  .form-group
+    = f.label :name, class: 'control-label'
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :expires, class: 'control-label'
+    = f.date_field :expires, class: 'form-control', value: (Time.now + 365.days).strftime('%Y-%m-%d')
+  .form-group
+    = f.label :format, class: 'control-label'
+    = f.collection_select :format_id, Format.all, :id, :name, {}, { class: 'form-control' }
+  .form-group
+    = f.label :active, class: 'control-label'
+    = f.check_box :active, class: 'checkbox'
+
+
+  .form-group
+    = f.submit 'Save', class: 'btn btn-default'
+    = link_to 'Cancel', :back, { class: 'btn btn-default' }
