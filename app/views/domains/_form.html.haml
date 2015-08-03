@@ -1,17 +1,15 @@
-= form_for @domain, :html => { class: 'form-horizontal', role: 'form' } do |f|
+= form_for @domain, :html => { class: 'form', role: 'form' } do |f|
   - if @domain.errors.any?
     - @domain.errors.full_messages.each do |msg|
       %p.alert.alert-warning
         = msg
 
   .form-group
-    = f.label :name, class: 'control-label col-sm-2'
-    .col-sm-10
-      = f.text_field :name, class: 'form-control'
+    = f.label :name, class: 'control-label'
+    = f.text_field :name, class: 'form-control'
   .form-group
-    = f.label :description, class: 'control-label col-sm-2'
-    .col-sm-10
-      = f.text_field :description, class: 'form-control'
-  .form-group
+    = f.label :description, class: 'control-label'
+    = f.text_field :description, class: 'form-control'
+  .btn-group
     = f.submit 'Save', class: 'btn btn-default'
     = link_to 'Cancel', :back, { class: 'btn btn-default' }

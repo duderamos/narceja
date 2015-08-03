@@ -1,11 +1,12 @@
-%h2 Domains
+.page-header
+  %h2 Domains
 
 .container
   - if @domains.count == 0
     %p.alert.alert-warning
-      There's no domain registered yet.
+      No domain found.
   - else
-    %table.table.table-striped.table-bordered.table-hover
+    %table.table.table-striped.table-hover.table-wb
       %tr
         %th Name
         %th Description
@@ -17,5 +18,7 @@
           %td
             = domain.description
           %td
-            = link_to 'Edit', '#'
-            = link_to 'Delete', '#'
+            = link_to edit_domain_path(domain), class: 'btn btn-link btn-xs' do
+              .glyphicon.glyphicon-pencil
+            = link_to domain_path(domain), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+              .glyphicon.glyphicon-trash
