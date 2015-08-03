@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :domains
+  devise_for :users
+  resources :domains 
+  resources :mailboxes
+
+  patch 'mailboxes/:id/newpassword', to: 'mailboxes#newpassword', as: 'newpassword_mailboxes'
 
   root 'home#index'
 end

@@ -25,5 +25,30 @@
                     = link_to 'List', domains_path
                   %li
                     = link_to 'New', new_domain_path
-      .jumbotron
+              %li.dropdown
+                %a.dropdown-toggle{ data: { 'toggle': 'dropdown' } }
+                  Mailboxes
+                  %span.caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to 'List', mailboxes_path
+                  %li
+                    = link_to 'New', new_mailbox_path
+            - if user_signed_in?
+              %ul.nav.navbar-nav.navbar-right
+                %li.active.nav-link
+                  = link_to current_user.email, '#'
+                %li
+                  = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out navbar-link'
+            - else
+              %ul.nav.navbar-nav.navbar-right
+                %li
+                  = link_to 'Login', new_user_session_path, class: 'glyphicon glyphicon-log-in'
+      - if notice
+        %p.alert.alert-success
+          = notice
+      - if alert
+        %p.alert.alert-danger
+          = alert
+      .container
         = yield
