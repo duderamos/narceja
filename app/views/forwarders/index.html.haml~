@@ -1,0 +1,41 @@
+.page-header
+  %h3 Forwarders
+
+- if @forwarders.count == 0
+  %p.alert.alert-warning
+    No forwarder found.
+- else
+  .container
+    = form_tag forwarders_path, :method => 'get', :class => 'form-inline', id: 'search-form' do
+      .form-group
+        = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search forwarder'
+        = submit_tag 'Search', :name => nil, class: 'btn btn-default'
+  %br
+  %table.table.table-striped.table-hover.table-wb
+    %tr
+      %th Name
+      %th Username
+      %th Domain
+      %th Lastlogin
+      %th Expires
+      %th Format
+      %th Active
+      %th
+    - @forwarders.each do |forwarder|
+      %tr{ class: cycle('odd','even') }
+        %td= forwarder.name
+        %td= forwarder.username
+        %td= forwarder.domain.name
+        %td= forwarder.lastlogin
+        %td= forwarder.expires
+        %td= forwarder.format.name
+        %td= forwarder.active
+        %td
+          = link_to forwarder_path(forwarder), class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-search
+          = link_to edit_forwarder_path(forwarder), class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-pencil
+          = link_to newpassword_forwarders_path(forwarder), method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-refresh
+          = link_to forwarder_path(forwarder), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+            .glyphicon.glyphicon-trash

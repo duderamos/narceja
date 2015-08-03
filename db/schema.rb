@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803123652) do
+ActiveRecord::Schema.define(version: 20150803180813) do
+
+  create_table "aliases", force: :cascade do |t|
+    t.string   "name"
+    t.string   "responsible"
+    t.text     "goto"
+    t.integer  "domain_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "aliases", ["domain_id"], name: "index_aliases_on_domain_id"
+  add_index "aliases", ["name"], name: "index_aliases_on_name", unique: true
 
   create_table "domains", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +39,18 @@ ActiveRecord::Schema.define(version: 20150803123652) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "forwarders", force: :cascade do |t|
+    t.string   "name"
+    t.string   "responsible"
+    t.text     "goto"
+    t.integer  "domain_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "forwarders", ["domain_id"], name: "index_forwarders_on_domain_id"
+  add_index "forwarders", ["name"], name: "index_forwarders_on_name", unique: true
 
   create_table "mailboxes", force: :cascade do |t|
     t.string   "username",   limit: 32

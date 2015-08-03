@@ -1,0 +1,4 @@
+.page-header
+  %h3 New mailbox
+
+= render 'form'

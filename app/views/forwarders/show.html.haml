@@ -1,0 +1,25 @@
+.page-header
+  %h3
+    = @forwarder.name + '@' #@forwarder.domain.name
+
+%table.table.table-wb
+  %tr
+    %th Responsible
+    %td= @forwarder.responsible
+  %tr
+    %th Name
+    %td= @forwarder.name
+  %tr
+    %th Domain
+    %td= @forwarder.domain.name
+  %tr
+    %th Goto
+    %td= @forwarder.goto
+  %tr
+    %th Created
+    %td= @forwarder.created_at
+  %tr
+    %th Updated
+    %td= @forwarder.updated_at
+
+= link_to 'Back to list', forwarders_path, class: 'btn btn-default'

@@ -34,6 +34,16 @@
                     = link_to 'List', mailboxes_path
                   %li
                     = link_to 'New', new_mailbox_path
+              %li.dropdown
+                %a.dropdown-toggle{ data: { 'toggle': 'dropdown' } }
+                  Forwarders
+                  %span.caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to 'List', forwarders_path
+                  %li
+                    = link_to 'New', new_forwarder_path
+
             - if user_signed_in?
               %ul.nav.navbar-nav.navbar-right
                 %li.active.nav-link
