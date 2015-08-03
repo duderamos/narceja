@@ -20,5 +20,5 @@
           %td
             = link_to edit_domain_path(domain), class: 'btn btn-link btn-xs' do
               .glyphicon.glyphicon-pencil
-            = link_to domain_path(domain), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+            = link_to domain_path(domain), method: :delete, data: { confirm: 'You are about to delete a domain and all related mailboxes and forwarders. Are you sure?' }, class: 'btn btn-link btn-xs' do
               .glyphicon.glyphicon-trash

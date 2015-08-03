@@ -35,7 +35,7 @@
             .glyphicon.glyphicon-search
           = link_to edit_mailbox_path(mailbox), class: 'btn btn-link btn-xs' do
             .glyphicon.glyphicon-pencil
-          = link_to newpassword_mailboxes_path(mailbox), method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+          = link_to newpassword_mailboxes_path(mailbox), method: :patch, data: { confirm: 'You are about to reset a password. Are you sure?' }, class: 'btn btn-link btn-xs' do
             .glyphicon.glyphicon-refresh
-          = link_to mailbox_path(mailbox), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' do
+          = link_to mailbox_path(mailbox), method: :delete, data: { confirm: 'You are about to delete a mailbox. Are you sure?' }, class: 'btn btn-link btn-xs' do
             .glyphicon.glyphicon-trash
